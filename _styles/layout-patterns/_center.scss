@@ -1,0 +1,23 @@
+/*
+
+*/
+$center-namespace: l- !default;
+
+
+.#{$center-namespace}center {
+    &#{&} {
+        display: -webkit-flex;
+        display: flex;
+
+        -webkit-align-items: center;
+                align-items: center;
+
+        -webkit-justify-content: center;
+                justify-content: center;
+    
+        & > * {
+            -webkit-flex: 0 1 auto;
+                    flex: 0 1 auto;
+        }
+    }
+}

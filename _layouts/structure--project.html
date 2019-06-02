@@ -1,0 +1,112 @@
+---
+layout: structure
+---
+    {% assign project_data = site.data.projects[page.project] %}
+    <div class="sticky-footer-wrap  c-page-wrap">
+
+        <header class="c-page-header  {{ project_data.theme_class }}">
+            
+            <div class="u-padding--bottom--s">
+                <div class="l-col-to-row-wrap">
+                    <div class="l-col-to-row">
+                        <div class="l-col-to-row__item  ff-width-100--40--50  u-text-align--left  c-page-header__first  u-padding--top--s  u-padding--sides--s">
+                            <a href="/{{ page.project }}" class="c-badge  c-badge--primary-logo">
+                                {{ project_data.logo_svg }}
+                            </a>
+                        </div>
+
+                        {% if page.display_cta %}
+                        <div class="l-col-to-row__item  ff-width-100--40--50  l-center  u-padding--top--s  u-padding--sides--s">
+                            
+                            <span>
+                                <a href="{{ project_data.randomisation_url }}" class="c-primary-cta  {{ project_data.theme_class }}">Randomise to {{ project_data.name }}</a>
+                            </span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            {% if page.display_navbar %}
+                {% capture navbar %}header__navbar--{{ page.project }}.html{% endcapture %}
+                {% include {{ navbar }} %}
+            {% endif %}
+        </header>
+        
+        
+        {% if page.display_hero and page.hero_image %}
+        <div id="hero" class="c-hero{% if page.hero_message_reversed %}  c-hero--reversed{% endif %}  d-bands--bottom  {{ project_data.theme_class }}">
+            <div class="c-hero__image">
+                <div class="l-proportional-container  l-proportional-container--3-1  l-proportional-container--5-1--wide">
+                    <div class="l-proportional-container__content">
+                        <div class="u-image-cover  js-image-cover">
+                            <div class="u-image-cover__inner">
+                                <img class="u-image-cover__image" src="{{ page.hero_image }}" width="600" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if page.hero_message %}
+            <div class="c-hero__message">
+                {% if page.is_home %}
+                <h1>{{ page.hero_message }}</h1>
+                {% else %}
+                <p><b>{{ page.hero_message }}</b></h1>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        <div class="sticky-footer-expand">
+            <main id="main">
+                {{ content }}
+            </main>
+        </div>
+
+        <footer class="sticky-footer  {{ project_data.theme_class }}  d-bands--top" role="contentinfo">
+            <div class="l-distribute-wrap">
+                <div class="l-distribute  l-distribute--gutter--small  l-distribute--limit-15">
+
+                    <div class="u-padding--s  l-center">
+                        
+                        {% if page.npeu_unit == "ctu" %}
+                        <a href="https://www.npeu.ox.ac.uk/ctu" class="c-badge">
+                            <img src="/img/unit-logos/npeu-ctu-logo.svg" onerror="this.src='/img/unit-logos/npeu-ctu-logo.png'; this.onerror=null;" alt="Logo: NPEU CTU" height="80">
+                        </a>
+                        {% else %}
+                        <a href="https://www.npeu.ox.ac.uk/" class="c-badge">
+                            <img src="/img/unit-logos/npeu-logo.svg" onerror="this.src='/img/unit-logos/npeu-logo.png'; this.onerror=null;" alt="Logo: NPEU" height="80">
+                        </a>
+                        {% endif %}
+                    </div>
+
+                    <div class="u-padding--s  l-center">
+                        <a href="https://www.npeu.ox.ac.uk" class="c-badge" rel="external noopener noreferrer" target="_blank">
+                            <img src="/img/affiliate-logos/athena-swan-silver-award.svg" onerror="this.src='/img/affiliate-logos/athena-swan-silver-award.png'; this.onerror=null;" alt="Logo: Athena Swan Silver Award" height="70">
+                        </a>
+                    </div>
+                    
+                    <div class="u-padding--s  l-center">
+                        <a href="http://www.ndph.ox.ac.uk/" class="c-badge" rel="external noopener noreferrer" target="_blank">
+                            <img src="/img/affiliate-logos/ndph-logo.svg" onerror="this.src='/img/affiliate-logos/ndph-logo.png'; this.onerror=null;" alt="Logo: Nuffield Department of Population Health" height="50">
+                        </a>
+                    </div>
+
+                    <div class="u-padding--s  l-center">
+                        <a href="http://www.ox.ac.uk/" class="c-badge" rel="external noopener noreferrer" target="_blank">
+                            <img src="/img/affiliate-logos/ou-logo-rect.svg" onerror="this.src='/img/affiliate-logos/ou-logo-rect.png'; this.onerror=null;" alt="Logo: University of Oxford" height="60">
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            
+            <p class="c-page-footer">
+                &copy; NPEU {{ site.time | date: '%Y'}}
+            </p>
+            
+        </footer>
+
+    </div>

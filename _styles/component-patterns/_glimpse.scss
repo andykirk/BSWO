@@ -1,0 +1,121 @@
+/*
+
+
+*/
+
+$glimpse-namespace: c- !default;
+$theme-namespace: t- !default;
+
+
+$glimpse--base-color: #eee !default;
+$glimpse--background-color: lighten($glimpse--base-color, 60);
+
+
+
+$glimpse--spacing-unit: 2rem !default;
+$glimpse--max-width: 30em !default;
+$glimpse--image-size: 7.2rem !default;
+
+$glimpse--base-color: #eee !default;
+$glimpse--text-color: #333 !default;
+$glimpse--background-color: #fff !default;
+$glimpse--border-size: 1px !default;
+$glimpse--border-style: solid !default;
+$glimpse--border-color: darken($glimpse--background-color, 30%) !default;
+/*$glimpse--link-color: false !default;
+$glimpse--link-has-border-bottom: false !default;
+$glimpse--link-color--alt: false !default;
+$glimpse--link-has-border-bottom: false !default;
+$glimpse--link-border-bottom: false !default;
+$glimpse--link-border-bottom--hover: false !default;*/
+
+$glimpse-heading--font-size: 1.8rem !default;
+$glimpse-footer--font-size:  1.4rem !default;
+
+
+$theme-only: false !default;
+
+// Note - no theme yet!
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$glimpse-namespace}glimpse {
+        &#{&} {
+            position: relative;
+            max-width: $glimpse--max-width;
+            //@if $glimpse--border-size != false {
+            //    border: $glimpse--border-size $glimpse--border-style $glimpse--border-color;
+            //}
+
+            //margin-bottom: $glimpse--spacing-unit;
+
+            //padding-top:    $glimpse--spacing-unit;
+            //padding-right:  $glimpse--spacing-unit;
+            //padding-bottom: $glimpse--spacing-unit;
+            padding-left:   $glimpse--image-size + $glimpse--spacing-unit;
+
+            //color: $glimpse--text-color;
+            //background-color: $glimpse--background-color;
+
+            min-height: $glimpse--image-size;
+
+            //box-shadow: 0 0 9px inset;
+        }
+
+
+        #{&}__header {
+
+            a {
+                border-bottom: 0;
+
+                &:hover {
+                    border-bottom: 0;
+
+                    span {
+                        border-bottom: 1px solid;
+                    }
+
+                    .#{$glimpse-namespace}glimpse__image {
+                        box-shadow: 0 0 0 2px currentColor;
+                    }
+                }
+            }
+        }
+        
+        #{&}__heading {
+            font-size: $glimpse-heading--font-size;
+            margin: 0;
+        }
+
+        #{&}__image {
+            width: $glimpse--image-size;
+            height: $glimpse--image-size;
+
+            overflow: hidden;
+
+            position: absolute;
+            left: 0;
+            top: 0;
+            border: 1px solid currentColor;
+
+        }
+
+        #{&}__image--rounded {
+            border-radius: 99999px;
+            overflow: hidden;
+        }
+
+        #{&}__content {
+            font-size: $glimpse-footer--font-size;
+
+            margin: 0;
+        }
+
+            #{&}__content * {
+                margin: 0;
+            }
+
+    }
+
+}

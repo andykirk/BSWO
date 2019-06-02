@@ -1,0 +1,41 @@
+/*
+*/
+
+$fill-height-namespace: u- !default;
+
+/*
+    height: 100% is needed for IE10-11, but breaks Safari 9-10.
+    Adding to IE via hack, but could switch to overriding for Safari if need be.
+    min-height seems to be safe for Safari though, and is needed for Edge.
+*/
+.#{$fill-height-namespace}fill-height {
+    -webkit-flex: 1 0 auto;
+            flex: 1 0 auto;
+            
+    min-height: 100%;
+}
+
+@media #{$f__ie10-11} {
+    .#{$fill-height-namespace}fill-height {
+        height: 100%;
+    }
+}
+
+
+.#{$fill-height-namespace}fill-height--column {
+    display: -webkit-flex !important;
+    display: flex !important;
+
+    -webkit-flex-direction: column;
+            flex-direction: column;
+
+    & > * {
+        -webkit-flex: 0 0 auto;
+                flex: 0 0 auto;
+    }
+    
+    & > .#{$fill-height-namespace}fill-height--column__expand {
+        -webkit-flex: 1 0 auto;
+                flex: 1 0 auto;
+    }
+}

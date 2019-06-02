@@ -1,0 +1,96 @@
+/*
+
+*/
+
+$badge-namespace: c- !default;
+
+$theme-only: false !default;
+
+// Note - no theme yet!
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$badge-namespace}badge {
+
+        &#{&} {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+            svg {
+                max-width: 100%;
+            }
+
+            img {
+                /*
+                    1. This is to provide positioning context for the ::after pseudo-element.
+                    2. This is so a broken image is still 100%.
+                    3. Center in container.
+                */
+
+                position: relative; /* [1] */
+
+                display: block; /* [2] */
+
+                height: auto;
+                width: auto;
+
+                max-width: 100%;
+                max-height: 8rem;
+
+
+                border-style: none;
+
+                margin: 0 auto; /* [3] */
+
+            }
+
+        &#{&}--small{
+            height: 2em;
+            width: 2em;
+
+            & img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+        /*
+        &#{&}--circle {
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        &#{&}--rounded {
+            border-radius: 0.2em;
+            overflow: hidden;
+        }
+        */
+    }
+
+    a[href].#{$badge-namespace}badge {
+        border: 0;
+        padding: 0;
+
+        &:hover,
+        &:active,
+        &:focus {
+            border: 0;
+            box-shadow: 0 0 0 0.6rem #fff, 0 0 0 1.2rem rgba(0,0,0,.2);
+        }
+    }
+
+    /*
+        IE10-11
+
+        1. IE11- seems to need this.
+    */
+
+    @media only all and (-ms-high-contrast: none), only all and (-ms-high-contrast: active) {
+
+        .#{$badge-namespace}badge img {
+            height: 100%; /* [1] */
+        }
+
+    }
+}

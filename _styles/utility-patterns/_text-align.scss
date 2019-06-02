@@ -1,0 +1,31 @@
+/*
+    Text alignment.
+    
+    @To Do: allow for responsive variations.
+*/
+
+$text-align-namespace: u- !default;
+
+.#{$text-align-namespace}text-align--left {
+    text-align: left !important;
+
+    -webkit-justify-content: flex-start;
+              -ms-flex-pack: start;
+            justify-content: flex-start;
+}
+
+.#{$text-align-namespace}text-align--center {
+    text-align: center !important;
+    
+    -webkit-justify-content: center;
+              -ms-flex-pack: center;
+            justify-content: center;
+}
+
+.#{$text-align-namespace}text-align--right {
+    text-align: right !important;
+    
+    -webkit-justify-content: flex-end;
+              -ms-flex-pack: end;
+            justify-content: flex-end;
+}

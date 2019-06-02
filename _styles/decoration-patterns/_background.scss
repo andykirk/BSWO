@@ -1,0 +1,53 @@
+//$backgrounds--base-color		 : #eee !default;
+$backgrounds-namespace: d- !default;
+$theme-namespace: t- !default;
+
+$backgrounds--background-color : $f__base-ui-color !default;
+
+$theme-only: false !default;
+
+@mixin background-theme ($theme-name: "", $theme: ()) {
+	// Set up theme name:
+	$theme-class: "";
+	@if $theme-name != "" {
+		$theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+	}
+	//@debug $theme-class;
+
+    .#{$backgrounds-namespace}background--very-light#{$theme-class} {
+		background-color: lighten(map-get($theme, background-color), 60%) !important;
+	}
+    
+    .#{$backgrounds-namespace}background--light#{$theme-class} {
+		background-color: lighten(map-get($theme, background-color), 35%) !important;
+	}
+    
+	.#{$backgrounds-namespace}background#{$theme-class} {
+		background-color: map-get($theme, background-color) !important;
+	}
+    
+    .#{$backgrounds-namespace}background--dark#{$theme-class} {
+		background-color: darken(map-get($theme, background-color), 10%) !important;
+	}
+    
+    
+    .#{$backgrounds-namespace}background--very-dark#{$theme-class} {
+		background-color: darken(map-get($theme, background-color), 20%) !important;
+	}
+    
+    .#{$backgrounds-namespace}background--sloped#{$theme-class} {
+        background: -moz-linear-gradient(45deg, darken(map-get($theme, background-color), 5%) 0%, darken(map-get($theme, background-color), 4%) 50%, darken(map-get($theme, background-color), 2%) 50%,darken(map-get($theme, background-color), 3%) 100%) !important;
+        background: -webkit-linear-gradient(45deg, darken(map-get($theme, background-color), 5%) 0%,darken(map-get($theme, background-color), 4%) 50%,darken(map-get($theme, background-color), 2%) 50%,darken(map-get($theme, background-color), 3%) 100%) !important;
+        background: linear-gradient(45deg, darken(map-get($theme, background-color), 5%) 0%,darken(map-get($theme, background-color), 4%) 50%,darken(map-get($theme, background-color), 2%) 50%,darken(map-get($theme, background-color), 3%) 100%) !important;
+    }
+}
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    @include background-theme(
+        "",
+        (
+            background-color : $backgrounds--background-color
+        ));
+}

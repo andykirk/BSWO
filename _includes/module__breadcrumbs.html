@@ -1,0 +1,15 @@
+<nav aria-label="breadcrumbs" class="u-padding--sides  u-padding--top  d-background  t-white">
+    <dl class="n-breadcrumbs">
+        <dt class="n-breadcrumbs__title">You are here:</dt>
+        {% assign crumbs = page.url | remove:'/index.html' | split: '/' %}
+        {% for crumb in crumbs offset: 1 %}
+        <dd class="n-breadcrumbs__item">
+            {% if forloop.last %}
+                <a class="n-breadcrumbs__link">{{ crumb | replace:'-',' ' | remove:'.html' | capitalize }}</a>
+            {% else %}
+                <a class="n-breadcrumbs__link" href="{% assign crumb_limit = forloop.index | plus: 1 %}{% for crumb in crumbs limit: crumb_limit %}{{ crumb | append: '/' }}{% endfor %}"><span>{{ crumb | replace:'-',' ' | remove:'.html' | capitalize }}</span></a>
+            {% endif %}
+        </dd>
+        {% endfor %}
+    </dl>
+</nav>

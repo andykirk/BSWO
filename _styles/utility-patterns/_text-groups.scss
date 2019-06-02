@@ -1,0 +1,64 @@
+/*
+    Groups.
+
+    Attempts to improve where text wraps.
+
+*/
+
+$text-group-namespace: u- !default;
+
+.#{$text-group-namespace}text-group {
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+
+    -webkit-flex-direction: row !important;
+        -ms-flex-direction: row !important;
+            flex-direction: row !important;
+
+    -webkit-flex-wrap: wrap !important;
+        -ms-flex-wrap: wrap !important;
+            flex-wrap: wrap !important;
+            
+    -webkit-align-items: center;
+         -ms-flex-align: center;
+            align-items: center;
+            
+    max-width: 100%;
+}
+
+.#{$text-group-namespace}text-group--center {
+    -webkit-justify-content: center;
+              -ms-flex-pack: center;
+            justify-content: center;
+}
+
+
+.#{$text-group-namespace}text-group--push-apart {
+    -webkit-justify-content: space-between;
+              -ms-flex-pack: justify;
+            justify-content: space-between;
+}
+
+/*
+    1. IE10 needs this to calculate widths properly.
+*/
+.#{$text-group-namespace}text-group > * {
+    margin: 0;
+
+    display: inline-block; /* [1] */
+
+    -webkit-flex: 0 1 auto !important;
+        -ms-flex: 0 1 auto !important;
+            flex: 0 1 auto !important;
+}
+
+// Preserve white space when not-wrapped:
+.#{$text-group-namespace}text-group > :not(:last-child) {
+    padding-right: 0.2em !important;
+}
+
+// Allow large space between distinct groups:
+.#{$text-group-namespace}text-group--wide-space > :not(:last-child) {
+    padding-right: 1em !important;
+}

@@ -1,0 +1,158 @@
+---
+layout: structure--project
+---
+<div class="l-blockrow">
+    <div class="l-blockrow__limit-widthX">
+
+        <div class="l-primary-content  d-bands--bottom  t-{{ page.project }}{% if page.has_pull_outs or page.section_menu or page.toc %}  l-primary-content--has-pull-outs{% endif %}">
+
+            <div class="l-primary-content__header">
+            
+                {% include module__breadcrumbs.html %}
+                
+                <div class="c-panel  c-longform-contentX">
+                    <h1>{{ page.title }}</h1>
+                </div>
+            </div>
+            {% if page.has_pull_outs or page.section_menu or page.toc %}
+            <div class="l-primary-content__pull-out  l-primary-content__pull-out--top">
+                {% assign total_h2 = content | split: '<h2' | size | minus: 1 %}
+                {% if page.display_toc and total_h2 > 2 %}
+                <div class="c-panel  c-panel--very-light  t-neutral  u-space--above  u-space--above">
+
+                    {% include module__toc.html %}
+
+                </div>
+                {% endif %}
+
+                {% if page.main_top_modules != false %}
+                    {% for module_name in page.main_top_modules %}
+                        {% capture module_file %}module__main-top--{{ page.project }}--{{ module_name }}.html{% endcapture %}
+                        {% include {{ module_file }} %}
+                    {% endfor %}
+                {% endif %}
+                
+                
+            </div> 
+            {% endif %}
+            <div class="l-primary-content__main">
+
+
+                {% comment %}<!-- keep for now
+                {% if page.headline_image %}
+                <div id="headline_image" class="l-primary-content__main__headline_image">
+                    <div class="l-proportional-container  l-proportional-container--3-1  d-bands--bottom  t-{{ page.project }}">
+                        <div class="l-proportional-container__content">
+                            <div class="u-image-cover  js-image-cover">
+                                <div class="u-image-cover__inner">
+                                    <img class="u-image-cover__image" src="{{ page.headline_image }}" width="600" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                -->{% endcomment %}
+
+
+                <div class="c-panel  c-longform-contentX">
+
+                    {{ content }}
+
+                </div>
+            </div>
+            {% if page.has_pull_outs %}
+            <div class="l-primary-content__pull-out  l-primary-content__pull-out--bottom">
+                {% if page.main_bottom_modules != false %}
+                    {% for module_name in page.main_bottom_modules %}
+                        {% capture module_file %}module__main-bottom--{{ page.project }}--{{ module_name }}.html{% endcapture %}
+                        {% include {{ module_file }} %}
+                    {% endfor %}
+                {% endif %}
+                {% if page.section_menu %}
+                <div class="c-panel  c-panel--very-light  t-neutral  u-space--below  u-space--above">
+
+                    {% capture section_menu_module %}module__section-menu--{{ page.project }}--{{ page.section_menu }}.html{% endcapture %}
+                    {% include {{ section_menu_module }} %}
+
+                </div>
+                {% endif %}
+                {% if page.is_updates == false %}
+                <div class="c-panel  c-panel--very-light  t-neutral  u-space--below  u-space--above">
+                    {% capture updates_module %}module__latest-news--{{ page.project }}.html{% endcapture %}
+                    {% include {{ updates_module }} %}
+                </div>
+                {% endif %}
+                {% if page.is_contact == false %}
+                <div class="c-panel  c-panel--very-light  t-neutral  u-space--below  u-space--above">
+                    {% capture contact_module %}module__contact--{{ page.project }}.html{% endcapture %}
+                    {% include {{ contact_module }} %}
+                </div>
+                {% endif %}
+            </div>            
+            {% endif %}
+        </div>
+        
+        {% if page.display_funder %}
+        <div class="l-blockrow">
+            <div class="l-blockrow__limit-widthX  d-bands--bottom  t-{{ page.project }}">
+                <div class="l-col-to-row-wrap">
+                    <div class="l-col-to-row">
+
+                        <div class="l-col-to-row__item  ff-width-100--40--50">
+                            <div class="u-image-cover  u-image-cover--min-30  js-image-cover">
+                                <div class="u-image-cover__inner">
+                                    <img class="u-image-cover__image" src="/img/{{ page.project }}/baby-asleep-198666544.jpg" width="150" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="l-col-to-row__item  ff-width-100--40--50">
+                            <div class="c-panel  u-fill-heightX  u-max-measure">
+                                {% capture funder_module %}module__funder--{{ page.project }}.html{% endcapture %}
+                                {% include {{ funder_module }} %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if page.display_social or page.display_support %}
+        <div class="l-blockrow">
+            <div class="l-blockrow__limit-widthX  d-bands--bottom  t-{{ page.project }} ">
+                <div class="l-col-to-row-wrap">
+                    <div class="l-col-to-row">
+                        <div class="l-col-to-row__item  ff-width-100--45--33-333">
+                            <div class="c-panel  t-white  u-fill-height">
+                                {% if page.display_social %}
+                                {% capture connect_module %}module__connect--{{ page.project }}.html{% endcapture %}
+                                {% include {{ connect_module }} %}
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="l-col-to-row__item  ff-width-100--45--66-666">
+                            <div class="c-panel  t-white  u-fill-height">
+
+                                {% if page.display_support %}
+                                {% capture support_module %}module__support--{{ page.project }}.html{% endcapture %}
+                                {% include {{ support_module }} %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!--
+                        <div class="l-col-to-row__item  ff-width-100--45--33-333">
+                            <div class="c-panel  t-white  u-fill-height">
+
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>

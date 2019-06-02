@@ -1,0 +1,18 @@
+/*
+    NeoCLEAR Theme
+    Note this theme file needs to be loaded *in addition* to the base 'style' file.
+*/
+
+/* --| START THEME |----------------------------------------------------------------------------- */
+$theme-only: true;
+@import "_themes-config.scss";
+@import "_themeable-patterns.scss";
+
+
+$theme-name: prumnhc;
+$theme: map_get($themes, $theme-name);
+
+
+@import "_theme";
+
+/* ---------------------------------------------------------------------------------------------- */

@@ -1,0 +1,78 @@
+/*
+
+*/
+
+$f__base-font-family: 'Lato', sans-serif;
+
+$f__root-font-size: 10px;
+
+$f__base-ui-color: #614776;
+//$f__breakpoint--enhanced: 42.5625em;
+$f__breakpoint--enhanced: 51.875em;
+
+@import '../bower_components/Fall-Back-Start-CSS/scss/_start_settings.scss';
+
+
+$max-main-line-length: 0;
+$measure: 68rem;
+$not-too-small: 18em;
+
+$h1-font-size: 40px / $f__base-font-size * 1em;
+$h2-font-size: 32px / $f__base-font-size * 1em;
+$h3-font-size: 26px / $f__base-font-size * 1em;
+$hover-effect-opacity: 0.2;
+$hover-effect-width: $f__base-rem-space-unit / 4;
+
+/* --| FUNCTIONS AND MIXINS |-------------------------------------------------------------------- */
+
+@mixin bottom-space-fix () {
+
+	padding-bottom: 0 !important;
+
+	&::after {
+		content: "";
+		display: block;
+		height: 1px;
+        margin-top: calc(#{$f__base-rem-space-unit} - 1px);
+	}
+
+}
+
+@mixin sloped-background ($color) {
+    background: -moz-linear-gradient(45deg, darken($color, 5%) 0%, darken($color, 4%) 50%, darken($color, 2%) 50%,darken($color, 3%) 100%) !important;
+    background: -webkit-linear-gradient(45deg, darken($color, 5%) 0%,darken($color, 4%) 50%,darken($color, 2%) 50%,darken($color, 3%) 100%) !important;
+    background: linear-gradient(45deg, darken($color, 5%) 0%,darken($color, 4%) 50%,darken($color, 2%) 50%,darken($color, 3%) 100%) !important;
+
+}
+
+@mixin signs-theme-background ($color) {
+    @include sloped-background($color);
+}
+
+
+
+// Fluid Typography
+// https://css-tricks.com/snippets/css/fluid-typography/
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+    $u1: unit($min-vw);
+    $u2: unit($max-vw);
+    $u3: unit($min-font-size);
+    $u4: unit($max-font-size);
+
+    @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+            & {
+            font-size: $min-font-size;
+            @media screen and (min-width: $min-vw) {
+                font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+            }
+            @media screen and (min-width: $max-vw) {
+                font-size: $max-font-size;
+            }
+        }
+    }
+}

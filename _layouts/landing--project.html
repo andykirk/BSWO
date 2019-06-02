@@ -1,0 +1,160 @@
+---
+layout: structure--project
+---
+{% assign project_data = site.data.projects[page.project] %}
+<div class="l-blockrow  u-fill-area">
+    <div class="l-blockrow__limit-widthX  d-bands--bottom  t-{{ page.project }}  u-fill-area">
+        <div class="l-col-to-row-wrap">
+            <div class="l-col-to-row">
+                <div class="l-col-to-row__item  ff-width-100--50--66-666">
+                    <div class="c-panel  u-fill-height  u-padding--sides--l">
+                        <div class="u-max-measure">
+                            {{ content }}
+
+                            {% if page.landing_display_cta %}
+                            <p>
+                                <a href="/{{ page.project }}/parents" class="cta  cta--has-icon">Find out more<svg display="none" class="icon" aria-hidden="true"><use xlink:href="#icon-chevron-right"></use></svg></a>
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div><!--
+                    <div class="embed-container">
+                        <iframe allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/Knkl9l8-F34?rel=0" width="560"></iframe>
+                    </div>
+             --></div>
+                {% if page.landing_display_signpost_bottom or page.landing_display_signpost_top %}
+                <div class="l-col-to-row__item  ff-width-100--50--33-333">
+                    <div class="c-signpost-wrap  u-fill-height">
+                        <div class="c-signpost  u-fill-height">
+                            {% if page.landing_display_signpost_top %}
+                            <div class="c-sign  c-sign--participants  t-{{ page.project }}">
+                                <a href="/{{ page.project }}/{{ project_data.participants_url }}" class="c-sign__link">
+                                    <span class="c-sign__centered-content  u-padding--top--l  u-padding--bottom--l">
+                                        <span class="c-sign__svg" style="background-image: url('data:image/svg+xml;base64,{{ project_data.participants_svg_encoded }}');"></span>
+                                        <span class="c-sign__text  c-sign__text--large">{{ project_data.participants_label }}</span>
+                                    </span>
+                                </a>
+                            </div>
+
+                            <div class="c-sign  c-sign--clinicians  t-{{ page.project }}">
+                                <a href="/{{ page.project }}/clinicians" class="c-sign__link">
+                                    <span class="c-sign__centered-content  u-padding--top--l  u-padding--bottom--l">
+                                        <span class="c-sign__svg" style="background-image: url('data:image/svg+xml;base64,{{ project_data.clinicians_svg_encoded }}');"></span>
+                                        <span class="c-sign__text  c-sign__text--large">Clinicians</span>
+                                    </span>
+                                </a>
+                            </div>
+                            {% endif %}
+                            {% comment %}<!--
+                            <div class="c-sign  c-sign--contact  t-{{ page.project }}">
+                                <a href="/{{ page.project }}/contact" class="c-sign__link">
+                                    <span class="c-sign__centered-content">
+                                        {{ project_data.contact_svg }}
+                                        <span class="c-sign__text  c-sign__text--large">Contact</span>
+                                    </span>
+                                </a>
+                            </div>
+
+                            <div class="c-sign  c-sign--centres  t-{{ page.project }}">
+                                <a href="/{{ page.project }}/centres" class="c-sign__link">
+                                    <span class="c-sign__centered-content">
+                                        {{ project_data.centres_svg }}
+                                        <span class="c-sign__text  c-sign__text--large">Centres</span>
+                                    </span>
+                                </a>
+                            </div>
+                            -->{% endcomment %}
+                            {% comment %}<!--
+                            
+                                Add a marker to the meter with the number.
+                                ALSO: it's possible that a trial might not have a target, if that's the 
+                                case then skip the (Target: XX) and the meter completely.
+                            
+                            -->{% endcomment %}
+                            {% if page.landing_display_signpost_bottom %}
+                            {% capture signpost-bottom_module %}module__signpost-bottom--{{ page.project }}.html{% endcapture %}
+                            {% include {{ signpost-bottom_module }} %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if page.landing_display_video and project_data.intro_video_id %}
+<div class="l-blockrow">
+    <div class="l-blockrow__limit-widthX  d-bands--bottom  t-{{ page.project }}">
+        <div class="embed-container">
+            <iframe allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/{{ project_data.intro_video_id }}?rel=0" width="560"></iframe>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if page.landing_display_updates %}
+<div class="l-blockrow">
+    <div class="l-blockrow__limit-widthX  d-bands--bottom  t-{{ page.project }}">
+        {% capture news_module %}module__news--{{ page.project }}.html{% endcapture %}
+        {% include {{ news_module }} %}
+    </div>
+</div>
+{% endif %}
+{% if page.display_funder %}
+<div class="l-blockrow">
+    <div class="l-blockrow__limit-widthX  d-bands--bottom  t-{{ page.project }}">
+        <div class="l-col-to-row-wrap">
+            <div class="l-col-to-row">            
+                
+                <div class="l-col-to-row__item  ff-width-100--40--50">
+                    <div class="u-image-cover  u-image-cover--min-30  js-image-cover">
+                        <div class="u-image-cover__inner">
+                            <img class="u-image-cover__image" src="/img/{{ page.project }}/baby-asleep-198666544.jpg" width="150" alt="">
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <div class="l-col-to-row__item  ff-width-100--40--50">
+                    <div class="c-panel  u-fill-heightX  u-max-measure">
+                        {% capture funder_module %}module__funder--{{ page.project }}.html{% endcapture %}
+                        {% include {{ funder_module }} %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% if page.landing_display_info or page.display_social or page.display_support %}
+<div class="l-blockrow">
+    <div class="l-blockrow__limit-widthX  d-bands--bottom  t-{{ page.project }} ">
+        <div class="l-col-to-row-wrap">
+            <div class="l-col-to-row">            
+                {% if page.landing_display_info %}
+
+                {% capture trial_info_module %}module__trial-info--{{ page.project }}.html{% endcapture %}
+                {% include {{ trial_info_module }} %}
+
+                {% endif %}
+                
+                <div class="l-col-to-row__item  ff-width-100--40--50">
+                    <div class="c-panel  t-white  u-fill-height">
+                        {% if page.display_social %}
+                        {% capture connect_module %}module__connect--{{ page.project }}.html{% endcapture %}
+                        {% include {{ connect_module }} %}
+                        {% endif %}
+                        
+                        {% if page.display_support %}
+                        {% capture support_module %}module__support--{{ page.project }}.html{% endcapture %}
+                        {% include {{ support_module }} %}
+                        {% endif %}
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,27 @@
+/*
+
+*/
+$start-namespace: l- !default;
+
+
+.#{$start-namespace}start {
+    &#{&} {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+
+             -ms-flex-align: start;
+        -webkit-align-items: start;
+                align-items: start;
+
+                  -ms-flex-pack: start;
+        -webkit-justify-content: start;
+                justify-content: start;
+
+        & > * {
+            webkit-flex: 0 1 auto;
+               -ms-flex: 0 1 auto;
+                   flex: 0 1 auto;
+        }
+    }
+}

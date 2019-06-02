@@ -1,0 +1,92 @@
+/*
+    Experimental. Not decided if I want to do this yet, and if so how.
+    Idea is that if I have to support IE9 NOW, I won't in the future so it'll be easier to drop
+    support by keeping this seperate.
+    
+    UPDATE - Actually, why bother? IE9 usage for trials sites is low - the 100's of hits are for 
+    elsewhere - and the CURRENT trials sites get unstyled content for IE9 anyway, so why put effort
+    into improving that?
+*/
+
+@import "layout-patterns/_col-to-row--ie9.scss";
+
+$ff-prefix: ff-width-;
+
+$ff-max-widths: (
+    100%
+);
+
+
+$ff-breakpoints: (
+    10em,
+    15em,
+    20em,
+    25em,
+    30em,
+    35em,
+    40em,
+    45em,
+    50em,
+    55em,
+    60em
+);
+
+$ff-min-widths: (
+    20%,
+    25%,
+    33.333%,
+    40%,
+    50%,
+    60%,
+    66.666%,
+    75%,
+    80%
+);
+
+
+/// Remove the unit of a length (https://css-tricks.com/snippets/sass/strip-unit-function/)
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+/// Replace `$search` with `$replace` in `$string` (https://css-tricks.com/snippets/sass/str-replace-function/)
+/// @author Hugo Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+
+  @return $string;
+}
+
+
+@function safe-num($number) {
+    $n: strip-unit($number) + unquote("");
+    @return str-replace($n, '.', '-');
+}
+
+@each $max-width in $ff-max-widths {
+    @each $breakpoint in $ff-breakpoints {
+        @each $min-width in $ff-min-widths {
+            $name: #{safe-num($max-width)}--#{safe-num($breakpoint)}--#{safe-num($min-width)};
+
+            .#{$ff-prefix}#{$name} {
+                width: $min-width;
+                min-width: none;
+                max-width: none;
+            }
+        }
+    }
+}

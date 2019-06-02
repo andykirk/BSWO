@@ -1,0 +1,174 @@
+// Hmmm. THere's way too much in here already. Needs sorting.
+
+// This is for the styleguide:
+
+/* IE9-11 */
+@media #{$f__ie9-11} {
+
+    details > pre {
+
+        width: calc(100vw - 67px);
+    }
+
+}
+
+
+
+
+
+
+
+$enough-room-at: $f__base-rem-space-unit + $measure + $f__base-rem-space-unit + $f__base-rem-space-unit + ($measure / 2) + $f__base-rem-space-unit;
+
+.svg__link:hover,
+.svg__link:active,
+.svg__link:focus {
+	box-shadow: 0 0 0 ($hover-effect-width) #fff, 0 0 0 ($hover-effect-width * 2) rgba(0,0,0,$hover-effect-opacity);
+}
+
+
+
+.svg a[href]::after {
+	display: none;
+}
+
+
+@media only screen and (min-width: $f__breakpoint--enhanced) {
+    .nav-bar.d-bands--bottom {
+        border: 0;
+    }
+}
+
+.dropdown,
+.nav-bar__item,
+.nav-bar__link {
+    position: relative;
+}
+
+.nav-bar__item--current::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.4;
+}
+
+
+
+.search-form .search-form__field.search-form__field {
+    border-radius: 50px 0 0 50px;
+    padding-left: 0.5em;
+}
+/*-----------*/
+
+// Note Safari 10- doesn't factor in min/max width/height when deciding how many items can fit on
+// a multi-line flex container.
+// This means that the usual fab-four technique doesn't work as expected.
+.dl-2-col {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+        -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+
+    margin: 0;
+}
+
+.dl-2-col dt {
+    -webkit-flex: 1 0 8em;
+        -ms-flex: 1 0 8em;
+            flex: 1 0 8em;
+
+    margin: 0;
+}
+
+.dl-2-col dd {
+    -webkit-flex: 1 0 66%;
+        -ms-flex: 1 0 66%;
+            flex: 1 0 66%;
+
+     -webkit-align-self: flex-end;
+    -ms-flex-item-align: end;
+             align-self: flex-end;
+
+    margin: 0;
+    padding-left: 1em;
+}
+
+/*------------------*/
+
+
+/*------------------*/
+
+.s-updates.c-panel .c-card__full-link {
+    max-width: 41rem;
+    margin: 0 auto;
+}
+
+
+/*---------------------*/
+
+
+
+.l-blockrow:last-child > .d-bands--bottom {
+    border: 0 !important;
+}
+/*-----------------*/
+
+/***************************/
+/*
+@media only screen and (max-width: $primary-content-breakpoint) {
+    .l-primary-content__pull-out.u-space--above {
+        margin-top: 0 !important;
+    }
+
+    .l-primary-content__pull-out .c-panel {
+        padding-top: 0 !important;
+    }
+}
+*/
+
+
+table {
+    @include fluid-type(250px, 672px, 10px, 14px);
+    line-height: 1.2;
+}
+
+th:first-child {
+    text-align: left;
+}
+
+tfoot {
+    font-weight: bold;
+}
+
+td, th {
+    padding-top: 0.6rem;
+    padding-right: 0.6rem;
+    padding-bottom: calc(0.6rem - 1px);
+    padding-left: 0.6rem;
+}
+
+
+
+
+details {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    padding: .5rem 0 .5rem 1.5rem;
+}
+
+summary {
+    cursor: pointer;
+    margin-bottom: 1rem;
+    margin-left: -1.5rem;
+    font-weight: 700;
+}

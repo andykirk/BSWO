@@ -1,0 +1,52 @@
+//$page-header--base-color		 : #eee !default;
+$page-header-namespace: c- !default;
+$theme-namespace: t- !default;
+
+$page-header--text-color       : #fff !default;
+$page-header--background-color : $f__base-ui-color !default;
+
+$page-header--band-color       : $f__base-ui-color !default;
+
+// Note: border color gets darkened by default later, but declaring here to allow specific override:
+//$panel--border-color: darken($panel--background-color, 10%) !default;
+//$page-header--border-color: null !default;
+//$page-header--border-width: 1px !default;
+//$page-header--border-style: solid !default;
+
+$page-header--padding: $f__base-rem-space-unit / 2 !default;
+
+$theme-only: false !default;
+
+@mixin page-header-theme ($theme-name: "", $theme: ()) {
+	// Set up theme name:
+	$theme-class: "";
+	@if $theme-name != "" {
+		$theme-class: unquote('.')#{$theme-namespace}#{$theme-name};
+	}
+	//@debug $theme-class;
+
+	/*.#{$page-header-namespace}page-header#{$theme-class} {
+		color: map-get($theme, text-color);
+		background-color: map-get($theme, page-header-color);
+	}*/
+}
+
+// We don't need this if we're only themeing the pattern:
+@if $theme-only == false {
+
+    .#{$page-header-namespace}page-header {
+    
+        /*&#{&} {
+            background-color: #fff;
+            margin-bottom: 0;
+        }*/
+    }
+
+    @include page-header-theme(
+        "",
+        (
+            text-color       : $page-header--text-color,
+            background-color : $page-header--background-color
+        )
+    );
+}

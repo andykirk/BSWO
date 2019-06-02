@@ -1,0 +1,42 @@
+# Site settings
+title: "BSWO"
+email: "andy.kirk@npeu.ox.ac.uk"
+description: "BSWO Website"
+repository: "https://github.com/andykirk/BSWO"
+baseurl: ""
+url: "https://dev.shadow-warrior-oxford.co.uk/"
+port: 4002
+
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+    values:
+      is_home: false
+      has_map: false
+
+# Build settings
+markdown: kramdown
+
+kramdown:
+  auto_ids:       true
+
+
+
+exclude: [
+    "_archive",
+    "_images",
+    "_scripts",
+    "_styles",
+    "bower.json",
+    "bower_components",
+    "Gemfile",
+    "Gemfile.lock",
+    "gulpfile.js",
+    "local-gulp.bat",
+    "local-jekyll.bat",
+    "node_modules",
+    "package.json",
+    "README.md"
+]
